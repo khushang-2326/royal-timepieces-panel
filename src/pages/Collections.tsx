@@ -40,15 +40,19 @@ const Collections = () => {
   const fetchProducts = async () => {
     try {
       const response = await fetch(`${API_URL}/products`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch products');
+      const text = await response.text();
+      try {
+        const data = JSON.parse(text);
+        setProducts(data);
+      } catch (parseError) {
+        console.error("API returned non-JSON response:", text);
+        throw new Error('Server returned an invalid response (HTML instead of JSON)');
       }
-      const data = await response.json();
-      setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
       toast.error("Failed to load collections");
     } finally {
+
       setLoading(false);
     }
   };
