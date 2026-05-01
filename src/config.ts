@@ -1,12 +1,19 @@
 // Central configuration for the API URL
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
-// We use the environment variable if present, otherwise we fallback to the Render URL or localhost
-const API_URL = VITE_API_URL 
-  ? `${VITE_API_URL}/api` 
-  : (window.location.hostname.includes('onrender.com') 
-      ? 'https://royal-timepieces-api.onrender.com/api' 
-      : 'http://localhost:5001/api');
+let API_URL = 'http://localhost:5001/api';
+
+if (VITE_API_URL) {
+  // Ensure the URL is complete
+  if (VITE_API_URL.startsWith('http')) {
+    API_URL = `${VITE_API_URL}/api`;
+  } else {
+    API_URL = `https://${VITE_API_URL}.onrender.com/api`;
+  }
+} else if (window.location.hostname.includes('onrender.com')) {
+  // Fallback for Render
+  API_URL = 'https://royal-timepieces-api.onrender.com/api';
+}
 
 console.log('🔗 Connecting to API at:', API_URL);
 
