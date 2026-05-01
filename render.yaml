@@ -1,5 +1,5 @@
 services:
-  # --- Backend Service ---
+  # Backend
   - type: web
     name: royal-timepieces-api
     runtime: node
@@ -18,7 +18,7 @@ services:
       - key: GEMINI_API_KEY
         sync: false
 
-  # --- Frontend Service ---
+  # Frontend
   - type: static
     name: royal-timepieces-web
     plan: free
@@ -30,5 +30,3 @@ services:
           type: web
           name: royal-timepieces-api
           property: host
-        # This will automatically point to your backend URL + /api
-        value: ${VITE_API_URL}/api
