@@ -22,7 +22,6 @@ services:
     env: static
     buildCommand: npm install && npm run build
     staticPublishPath: dist
-    # --- ADDING REWRITE RULE FOR REACT ROUTER ---
     routes:
       - type: rewrite
         source: /*
@@ -32,4 +31,5 @@ services:
         fromService:
           type: web
           name: royal-timepieces-api
-          property: host
+          # --- CHANGING HOST TO URL FOR EXTERNAL ACCESS ---
+          property: url
