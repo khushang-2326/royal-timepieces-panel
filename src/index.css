@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Premium Navy & Pure Black Theme */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 45% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 48% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 30% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 25% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 220 45% 12%;
+    --ring: 0 0% 15%;
+
+    --radius: 0.5rem;
+
+    /* Custom premium tokens */
+    --pure-black: 0 0% 0%;
+    --charcoal: 0 0% 12%;
+    --charcoal-light: 0 0% 18%;
+    --silver: 0 0% 75%;
+    --silver-light: 0 0% 85%;
+    --silver-dark: 0 0% 65%;
+    --navy-deep: 220 50% 6%;
+    --navy-medium: 220 45% 12%;
+    --glass-bg: 220 45% 10%;
+    --glass-border: 0 0% 22%;
+    --accent-gray: 0 0% 50%;
+    --accent-white: 0 0% 95%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Same as light theme - always premium navy */
+    --background: 220 50% 6%;
+    --foreground: 210 20% 98%;
+  }
+}
+
+@layer utilities {
+
+  /* Premium Glassmorphism Effects */
+  .glass {
+    background: rgba(12, 18, 30, 0.75);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-card {
+    background: rgba(16, 24, 40, 0.65);
+    backdrop-filter: blur(24px);
+    border: 1px solid hsl(var(--glass-border));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .glass-card:hover {
+    background: rgba(0, 0, 0, 0.65);
+    border-color: hsl(var(--silver));
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Silver gradient text */
+  .gold-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--silver-light)), hsl(var(--silver)), hsl(var(--silver-dark)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+  }
+
+  /* Premium gradient backgrounds */
+  .premium-gradient {
+    background: linear-gradient(135deg, hsl(220 50% 8%), hsl(0 0% 5%), hsl(0 0% 8%));
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Luxury shimmer effect */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+
+    100% {
+      left: 100%;
+    }
+  }
+
+  @keyframes slow-zoom {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-slow-zoom {
+    animation: slow-zoom 20s linear infinite alternate;
+  }
+
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
