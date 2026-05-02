@@ -70,12 +70,6 @@ export const WishlistProvider = ({ children }: { children: React.ReactNode }) =>
     }, [wishlistItems]);
 
     const addToWishlist = (item: WishlistItem) => {
-        const storedUser = sessionStorage.getItem("user");
-        if (!storedUser) {
-            toast.error("Please sign in to add items to wishlist");
-            navigate("/auth");
-            return;
-        }
         setWishlistItems((prev) => [...prev, item]);
         toast.success("Added to wishlist");
     };

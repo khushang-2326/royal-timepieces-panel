@@ -21,6 +21,7 @@ import AdminProducts from "./pages/admin/AdminProducts";
 import AdminUsers from "./pages/admin/AdminUsers";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserLayout from "./components/UserLayout";
+import ScrollToTop from "./components/ScrollToTop";
 
 import { CartProvider } from "@/contexts/CartContext";
 import { WishlistProvider } from "@/contexts/WishlistContext";
@@ -30,6 +31,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
+      <ScrollToTop />
       <CartProvider>
         <WishlistProvider>
           <TooltipProvider>
@@ -55,12 +57,13 @@ const App = () => (
                 <Route path="/product/:id" element={<ProductDetails />} />
                 <Route path="/about" element={<About />} />
 
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<Checkout />} />
+
                 {/* Protected User Routes */}
                 <Route element={<ProtectedRoute />}>
-                  <Route path="/cart" element={<Cart />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/orders" element={<Orders />} />
-                  <Route path="/checkout" element={<Checkout />} />
                 </Route>
               </Route>
 

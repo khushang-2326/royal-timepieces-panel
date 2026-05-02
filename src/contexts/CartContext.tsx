@@ -83,13 +83,6 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     }, [cartItems]);
 
     const addToCart = (product: Omit<CartItem, "quantity">) => {
-        const storedUser = sessionStorage.getItem("user");
-        if (!storedUser) {
-            toast.error("Please sign in to add items to cart");
-            navigate("/auth");
-            return;
-        }
-
         setCartItems((prev) => {
             const existingItem = prev.find((item) => item.id === product.id);
             if (existingItem) {
